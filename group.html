@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>peerConnect — Group Details</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  <!-- Navbar -->
+  <header class="flex items-center justify-between px-6 py-4 bg-gray-800 border-b border-gray-700">
+    <h1 class="text-2xl font-semibold text-indigo-400">peerConnect</h1>
+    <nav class="space-x-4">
+      <a href="dashboard.html" class="text-gray-300 hover:text-indigo-400">Dashboard</a>
+      <a href="group.html" class="text-indigo-400 font-medium">Groups</a>
+      <a href="login.html" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md font-semibold">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Group Info -->
+  <main class="px-6 py-12 max-w-5xl mx-auto">
+
+    <section class="bg-gray-800 rounded-xl p-8 border border-gray-700 mb-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 class="text-3xl font-semibold text-indigo-400 mb-2">Frontend Wizards</h2>
+          <p class="text-gray-400 mb-4 max-w-lg">
+            Focused on improving React and Tailwind CSS skills through collaborative projects and live sessions.
+          </p>
+          <div class="text-sm text-gray-400 space-y-1">
+            <p>🕒 <span class="font-medium text-gray-200">Mon / Wed — 7 PM</span></p>
+            <p>📚 Topics: React, TailwindCSS, UI/UX</p>
+            <p>👥 Current Members: 5</p>
+          </div>
+        </div>
+
+        <div class="mt-6 md:mt-0">
+          <button class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-md font-semibold transition">
+            Join This Group
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="bg-gray-800 rounded-xl p-8 border border-gray-700 mb-10">
+      <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Group Members</h3>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Member Card -->
+        <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition">
+          <h4 class="font-semibold text-lg mb-1 text-gray-200">Alice</h4>
+          <p class="text-gray-400 text-sm mb-2">Frontend Developer</p>
+          <p class="text-gray-400 text-xs">Skills: React, JS, Tailwind</p>
+        </div>
+
+        <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition">
+          <h4 class="font-semibold text-lg mb-1 text-gray-200">Bob</h4>
+          <p class="text-gray-400 text-sm mb-2">UI/UX Enthusiast</p>
+          <p class="text-gray-400 text-xs">Skills: Figma, HTML, CSS</p>
+        </div>
+
+        <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition">
+          <h4 class="font-semibold text-lg mb-1 text-gray-200">Charlie</h4>
+          <p class="text-gray-400 text-sm mb-2">React Developer</p>
+          <p class="text-gray-400 text-xs">Skills: React, TypeScript</p>
+        </div>
+
+        <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition">
+          <h4 class="font-semibold text-lg mb-1 text-gray-200">Diana</h4>
+          <p class="text-gray-400 text-sm mb-2">Full Stack Student</p>
+          <p class="text-gray-400 text-xs">Skills: Node.js, Express</p>
+        </div>
+
+        <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition">
+          <h4 class="font-semibold text-lg mb-1 text-gray-200">Ethan</h4>
+          <p class="text-gray-400 text-sm mb-2">Frontend Learner</p>
+          <p class="text-gray-400 text-xs">Skills: JS, HTML, CSS</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat / Collaboration Section -->
+    <section class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+      <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Group Chat</h3>
+
+      <div class="bg-gray-900 border border-gray-700 rounded-lg p-4 h-64 overflow-y-auto mb-4">
+        <!-- Example messages -->
+        <div class="mb-3">
+          <p class="text-sm text-gray-400"><span class="font-semibold text-indigo-400">Alice:</span> Let’s meet at 7 PM today!</p>
+        </div>
+        <div class="mb-3">
+          <p class="text-sm text-gray-400"><span class="font-semibold text-indigo-400">Bob:</span> Works for me 👍</p>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          class="flex-1 px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-md font-semibold transition">Send</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-500 bg-gray-900 border-t border-gray-800 mt-10">
+    © 2025 peerConnect 1337 — Learn. Collaborate. Grow.
+  </footer>
+
+</body>
+</html>
