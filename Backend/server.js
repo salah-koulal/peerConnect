@@ -9,7 +9,7 @@ app.use(errorHandler);
 
 app.use('/api/auth', authRouter);
 app.use("/api/groups", groupRoutes);
-
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 4000;
 

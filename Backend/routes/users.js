@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/userController');
 
-const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    subjects: [String],        // e.g., ["Math", "Physics"]
-    location: { type: String }
-}, { timestamps: true });
+router.get('/', userController.getAllUsers);
+router.get('/:id', userController.getUserById);
+router.put('/:id', userController.updateUser);
+router.delete('/:id', userController.deleteUser);
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = router;
