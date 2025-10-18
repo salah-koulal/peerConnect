@@ -1,13 +1,15 @@
 const Group = require("../models/Group");
 
-exports.getAllGroups = async (req, res, next) => {
+exports.getAllGroups = async (req, res) => {
   try {
-    const groups = await Group.find();
-    res.status(200).json(groups);
-  } catch (error) {
-    next(error);
+    const groups = await Group.find().populate('members', 'username role subjects location');
+    res.json(groups);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 exports.getGroupById = async (req, res, next) => {
   try {
@@ -125,14 +127,52 @@ exports.leaveGroup = async (req, res, next) => {
       return res.status(400).json({ message: "User ID is required" });
     }
 
-    if (!group.members.includes(userId)) {
-      return res.status(400).json({ message: "You are not a member of this group" });
-    }
+    // Filter out nulls first
+    group.members = group.members.filter(
+      (member) => member && member.toString() !== userId
+    );
 
-    group.members = group.members.filter((member) => member.toString() !== userId);
     await group.save();
 
     res.status(200).json({ message: "You have left the group successfully", group });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+// Get all messages for a group
+exports.getMessages = async (req, res, next) => {
+  try {
+    const group = await Group.findById(req.params.id).populate("messages.user", "username");
+    if (!group) return res.status(404).json({ message: "Group not found" });
+
+    res.status(200).json(group.messages);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Send a new message
+exports.sendMessage = async (req, res, next) => {
+  try {
+    const { text } = req.body;
+    if (!text) return res.status(400).json({ message: "Message text is required" });
+
+    const group = await Group.findById(req.params.id);
+    if (!group) return res.status(404).json({ message: "Group not found" });
+
+    const userId = req.user ? req.user.id : req.body.userId;
+    if (!userId) return res.status(400).json({ message: "User ID required" });
+
+    const message = { user: userId, text };
+    group.messages.push(message);
+    await group.save();
+
+    // Populate username for response
+    await group.populate("messages.user", "username");
+
+    res.status(201).json({ message: "Message sent", messages: group.messages });
   } catch (error) {
     next(error);
   }
